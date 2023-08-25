@@ -15,7 +15,6 @@ public class demoScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         //Oyuncunun ismi Zihni soyismi Koşucu olsun
         playerName = "Zihni Koşucu";
 
@@ -35,13 +34,9 @@ public class demoScript : MonoBehaviour
         scoreMultiplier = scoreMultiplierCalculate(secretsFound);
         Debug.Log("2. METOD çıktısı :\n Gizli item bonus çarpanı! : " + scoreMultiplier + "x");
 
-
         //1. METOD ÇIKTISI scoreMultiplier değişkenini de kullanan bu metod leveli geçip geçmediğini bool döndürür.
         bool scorePass = scoreCheck(score);
         Debug.Log("1. METOD çıktısı :\n Level başarılı mı? (Skor*Skor çarpanı > 100): " + scorePass);
-
-
-
     }
 
     // Update is called once per frame
