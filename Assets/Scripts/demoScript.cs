@@ -12,13 +12,17 @@ public class demoScript : MonoBehaviour
 
     string playerName;
 
+    Vector3 newPosition = new Vector3(2f, 3f, 5f);
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         //Oyuncunun ismi Zihni soyismi Koşucu olsun
         playerName = "Zihni Koşucu";
 
-        //Oyuncunun 95 skor yaptığını varsayalım
+        //Oyuncunun 70 skor yaptığını varsayalım
         score = 70;
 
         //Ve 3 tane gizli item bulduğunu varsayalım
@@ -37,6 +41,13 @@ public class demoScript : MonoBehaviour
         //1. METOD ÇIKTISI scoreMultiplier değişkenini de kullanan bu metod leveli geçip geçmediğini bool döndürür.
         bool scorePass = scoreCheck(score);
         Debug.Log("1. METOD çıktısı :\n Level başarılı mı? (Skor*Skor çarpanı > 100): " + scorePass);
+
+        //Method to randomly move the 3D cube within bounds of 0 - 5 in all dimensions.
+        transformCube();
+
+        //Generates a random int array within specificied size.
+        int[] newRandomArray = randomArrayOfSize(20);
+        Debug.Log("First number in the random array: " + newRandomArray[0]);
     }
 
     // Update is called once per frame
@@ -79,5 +90,28 @@ public class demoScript : MonoBehaviour
         }
         Debug.Log("3. METOD çıktısı tamamamlandı.\n (Kullanıcı isminin harf harf yazdırılması)");
 
+    }
+
+    void transformCube()
+    {
+        float randomX = Random.Range(0f, 3f);
+        float randomY = Random.Range(0f, 3f);
+        float randomZ = Random.Range(0f, 3f);
+        newPosition = new Vector3(randomX, randomY, randomZ);
+
+        transform.position = newPosition;
+    }
+
+   int[] randomArrayOfSize(int arrLength)
+    {
+        int[] randomizedArray = new int[arrLength];
+
+        for (int i = 0; i < arrLength; i++)
+        {
+            randomizedArray[i] = Random.Range(-100, 100);
+            Debug.Log("Array value of index " + i +  randomizedArray[i]);
+        }
+
+        return randomizedArray;
     }
 }
