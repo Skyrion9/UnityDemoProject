@@ -12,7 +12,11 @@ public class demoScript : MonoBehaviour
 
     string playerName;
 
+    //Transform için vektör
     Vector3 newPosition = new Vector3(2f, 3f, 5f);
+
+    //New cube
+    GameObject newCube;
 
 
 
@@ -48,6 +52,9 @@ public class demoScript : MonoBehaviour
         //Generates a random int array within specificied size.
         int[] newRandomArray = randomArrayOfSize(20);
         Debug.Log("First number in the random array: " + newRandomArray[0]);
+
+        //Generates random cubes based on the initial cube with randomized locations.
+
     }
 
     // Update is called once per frame
@@ -113,5 +120,10 @@ public class demoScript : MonoBehaviour
         }
 
         return randomizedArray;
+    }
+
+    void generateRandomCubes()
+    {
+       // TODO add code with input from float? GameObject.Instantiate()
     }
 }
