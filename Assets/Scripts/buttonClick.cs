@@ -17,7 +17,7 @@ public class buttonClick : MonoBehaviour
         
     }
 
-    public void taskOnClick()
+    void taskOnClick()
     {
         Debug.Log("Button pressed");
     }
