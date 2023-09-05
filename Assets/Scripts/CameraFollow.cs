@@ -4,7 +4,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class CameraFollow : MonoBehaviour
+public class cameraFollow : MonoBehaviour
 {
     public Transform player;
     public float height = 20;

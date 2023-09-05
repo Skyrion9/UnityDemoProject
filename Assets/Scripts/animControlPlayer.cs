@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animControlPlayer : MonoBehaviour          //TODO: Cleanup code, especially the boolean checks for anim control.
+public class animControlPlayer : MonoBehaviour
 {
     //Animator Vars
     Animator animator;
@@ -44,7 +44,7 @@ public class animControlPlayer : MonoBehaviour          //TODO: Cleanup code, es
         {
             animator.SetBool(yurume, false);
             Debug.Log("Yurumeye W'den el cekildi dur");
-            //animator.SetFloat("walkingSpeed", -1.0f);
+            //animator.SetFloat("walkingSpeed", -1.0f);  backwards movement
         }
         if (!zipliyor && ziplamaBasla)
         {
@@ -71,9 +71,8 @@ public class animControlPlayer : MonoBehaviour          //TODO: Cleanup code, es
     private void playerMove()
     {
         float horizontalMovement = Input.GetAxis("Horizontal"); //yatay düzlemde 8 axis movement
-        float verticalMovement = Input.GetAxis("Vertical");
-        Vector3 movementVector = new Vector3(horizontalMovement, 0f, verticalMovement); //TODO add Y vector for jumps.
-        //transform.Translate(movementVector * movementSpeed * Time.deltaTime, Space.World);
+        float verticalMovement = Input.GetAxis("Vertical");     
+        Vector3 movementVector = new Vector3(horizontalMovement, 0f, verticalMovement); 
         transform.position += movementVector * movementSpeed * Time.deltaTime;
         if (movementVector != Vector3.zero)
         {
