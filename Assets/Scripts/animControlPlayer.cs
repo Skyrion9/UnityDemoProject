@@ -12,11 +12,14 @@ public class animControlPlayer : MonoBehaviour
     bool yurumeBasla = false;
     bool ziplamaBasla = false;
 
-    // Movement Vars
+    // Movement Vars, add private float rotationAngle = 0f; if using alternative rotation method.
     public float movementSpeed = 4f;
-    public float rotationSpeed = 4f;
+    public float rotationSpeed = 8f;
     public float jumpForce = 8f;
     bool isGrounded = false;
+    private float rotcompNumber = 0.0001f;
+    Vector3 movementVector = new Vector3(0f, 0f, 0f);
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -28,6 +31,7 @@ public class animControlPlayer : MonoBehaviour
     {
         //Movement code
         playerMove();
+        playerRotation();
         playerJump();
 
         //Animation parameter updates
@@ -57,8 +61,9 @@ public class animControlPlayer : MonoBehaviour
             Debug.Log("Yurumeye W'den el cekildi dur");
         }
     }
-    //Check if standing on ground tag
-    private void OnCollisionEnter(Collision collision)
+
+    
+    private void OnCollisionEnter(Collision collision)  //Check if standing on ground tag
     {
         if (collision.gameObject.CompareTag("floor"))
         {
@@ -68,18 +73,12 @@ public class animControlPlayer : MonoBehaviour
         }
     }
 
-    private void playerMove()
+    protected void playerMove()
     {
         float horizontalMovement = Input.GetAxis("Horizontal"); //yatay düzlemde 8 axis movement
-        float verticalMovement = Input.GetAxis("Vertical");     
-        Vector3 movementVector = new Vector3(horizontalMovement, 0f, verticalMovement); 
+        float verticalMovement = Input.GetAxis("Vertical");
+        movementVector = new Vector3(horizontalMovement, 0f, verticalMovement);
         transform.position += movementVector * movementSpeed * Time.deltaTime;
-        if (movementVector != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(movementVector * rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotation;
-        }
-
         yurumeBasla = movementVector.magnitude != 0;
     }
     
@@ -92,4 +91,17 @@ public class animControlPlayer : MonoBehaviour
             ziplamaBasla = true;
         }
     }
+
+    private void playerRotation()
+    {
+        if (movementVector.magnitude > rotcompNumber)
+        {
+            /*      Alternative method to rotate
+            rotationAngle = Mathf.Atan2(movementVector.x, movementVector.z) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.up);*/
+            Quaternion targetRotation = Quaternion.LookRotation(movementVector * rotationSpeed * Time.deltaTime);
+            transform.rotation = targetRotation;       
+        }
+    }
+
 }
