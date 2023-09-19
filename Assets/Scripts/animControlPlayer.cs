@@ -17,7 +17,7 @@ public class animControlPlayer : MonoBehaviour
     public float rotationSpeed = 8f;
     public float jumpForce = 8f;
     bool isGrounded = false;
-    private float rotcompNumber = 0.0001f;
+    private float rotcompNumber = 0.01f;
     Vector3 movementVector = new Vector3(0f, 0f, 0f);
 
     void Start()
@@ -73,6 +73,7 @@ public class animControlPlayer : MonoBehaviour
         }
     }
 
+    //TODO : use transfom.translate instead of transform.position
     protected void playerMove()
     {
         float horizontalMovement = Input.GetAxis("Horizontal"); //yatay düzlemde 8 axis movement
